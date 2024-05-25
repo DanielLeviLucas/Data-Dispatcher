@@ -19,6 +19,7 @@ urlpatterns = [
 
 # API URLS
 urlpatterns += [
+    path("api/v1/", include("apps.api.v1.urls", namespace="api_v1")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
         "api/docs/",
