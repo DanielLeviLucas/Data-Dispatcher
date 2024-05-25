@@ -1,0 +1,16 @@
+services:
+  postgres_db:
+    image: postgres:15.7-alpine3.20
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    command: postgres -c 'shared_buffers=256MB' -c 'max_connections=400' -c 'log_line_prefix="%m [%p] [%l] [%q] [%u]"' -c 'log_statement=all' -c 'log_connections=on' -c 'log_disconnections=on'
+volumes:
+  pgdata:
+    driver: local
