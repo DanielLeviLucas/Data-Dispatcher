@@ -15,3 +15,6 @@ shell:
 
 migrate:
 	python manage.py migrate
+
+clean_cache:
+	find . -type d -name __pycache__ -exec rm -rf {} \;
