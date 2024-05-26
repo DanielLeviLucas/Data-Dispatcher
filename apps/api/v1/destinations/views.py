@@ -1,4 +1,8 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import (
+    ListCreateAPIView,
+    RetrieveUpdateAPIView,
+    DestroyAPIView
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
@@ -42,3 +46,11 @@ class DestinationUpdateView(RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
     lookup_field = "pk"
     http_method_names = ['patch']
+
+
+class DestinationDeleteView(DestroyAPIView):
+    queryset = Destination.objects.all()
+    serializer_class = DestinationSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = "pk"
+    http_method_names = ["delete"]
