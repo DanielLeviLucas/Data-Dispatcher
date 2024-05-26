@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,7 +6,7 @@ from rest_framework.generics import get_object_or_404
 
 from apps.destinations.models import Destination
 from apps.accounts.models import Account
-from apps.api.v1.destinations.serializers import DestinationSerializer
+from apps.api.v1.destinations.serializers import DestinationSerializer, DestinationUpdateSerializer
 
 
 class DestinationListCreate(ListCreateAPIView):
@@ -34,3 +34,11 @@ class DestinationListCreate(ListCreateAPIView):
             account = Account.objects.get(account_id=account_id)
             return account.destinations.all()
         return Destination.objects.all()
+
+
+class DestinationUpdateView(RetrieveUpdateAPIView):
+    queryset = Destination.objects.all()
+    serializer_class = DestinationUpdateSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = "pk"
+    http_method_names = ['patch']
