@@ -11,3 +11,9 @@ class AccountListCreate(ListCreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        account_id = self.request.GET.get("account_id")
+        if account_id:
+            return Account.objects.filter(account_id=account_id)
+        return Account.objects.all()
