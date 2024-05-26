@@ -8,6 +8,7 @@ from django.views import defaults as default_views
 from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 
+
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
@@ -19,6 +20,7 @@ urlpatterns = [
 
 # API URLS
 urlpatterns += [
+    path("server/incoming_data/", include("apps.data_handler.urls", namespace="data_handler")),
     path("api/v1/", include("apps.api.v1.urls", namespace="api_v1")),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
