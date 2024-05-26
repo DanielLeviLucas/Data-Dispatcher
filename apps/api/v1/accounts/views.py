@@ -1,6 +1,6 @@
 from django.db import transaction
 
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from apps.accounts.models import Account
@@ -17,3 +17,11 @@ class AccountListCreate(ListCreateAPIView):
         if account_id:
             return Account.objects.filter(account_id=account_id)
         return Account.objects.all()
+
+
+class AccountUpdateView(RetrieveUpdateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = "account_id"
+    http_method_names = ['patch']
