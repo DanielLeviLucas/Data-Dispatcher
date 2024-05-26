@@ -1,0 +1,495 @@
+{
+	"info": {
+		"_postman_id": "ad0cbc09-45c7-4aa9-8501-56aa8838a396",
+		"name": "Customer labs webhook project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20622013",
+		"_collection_link": "https://www.postman.com/edhooruvan/workspace/testpress/collection/20622013-ad0cbc09-45c7-4aa9-8501-56aa8838a396?action=share&source=collection_link&creator=20622013"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Generate authentication token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"daniel\",\n    \"password\": \"mynameisL\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth_token/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth_token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"uuid": "aadca07f-6e49-4b9a-be79-6f26d4487519"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email_id\": \"joe@example.com\",\n    \"account_name\": \"Joe Techno\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/account/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "ec88b7a3-0ddd-47ec-bf4a-cac8dfc78919"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/account/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List an Account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "6b99dd8f-414b-4e0e-b298-4d08370dd78c"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/account/?account_id=dc2e75db-5422-46f2-a783-14eda0e21dc4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								""
+							],
+							"query": [
+								{
+									"key": "account_id",
+									"value": "dc2e75db-5422-46f2-a783-14eda0e21dc4",
+									"description": "Account unique ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "9245710d-7394-4798-beb9-3455800872b3"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\n    \"email_id\": \"someuu@example.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/account/:account_id/update/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								":account_id",
+								"update",
+								""
+							],
+							"variable": [
+								{
+									"key": "account_id",
+									"value": "dc2e75db-5422-46f2-a783-14eda0e21dc4",
+									"uuid": "46298184-e1be-493d-9975-52d88b740dd5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "5556c992-658a-478f-994b-61237797e801"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"uuid": "b77b6dd4-62de-46bd-a606-aecacad36354"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/account/:account_id/delete/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"account",
+								":account_id",
+								"delete",
+								""
+							],
+							"variable": [
+								{
+									"key": "account_id",
+									"value": "dc2e75db-5422-46f2-a783-14eda0e21dc4",
+									"uuid": "58b402ad-b3cd-48b4-a07a-129cb60d011c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Destinations",
+			"item": [
+				{
+					"name": "Create destination",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "b9c09f7c-39f9-4574-bf40-5ba3c1d414e8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\": \"http://127.0.0.1:8000/clabs_dest\",\n    \"account_id\": \"5265edb9-2d0e-4e94-8c6c-06bbaa45540f\",\n    \"headers\": {\n        \"app_id\": \"5265edb9-2d0e-4e94-8c6c-06bbaa45540f\",\n\t\t\t\t\"app_secret\": \"f8G7N8Hp3ZE94vorbyVMfDRTwsQrBLGOorHK01OaZUI\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/destination/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"destination",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List destination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "42c2dcc8-b8fb-4466-978d-c96919998a3a"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/destination/?id=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"destination",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Destinations of an account",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "f432f1ef-0cbc-4573-bba4-4349d2657313"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/destination/?account_id=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"destination",
+								""
+							],
+							"query": [
+								{
+									"key": "account_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Destination",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "ca1cfeb5-baf6-4955-9e7d-add17680e4bb"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"url\": \"https://dc41-115-99-18-173.ngrok-free.app/consumer2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/destination/:id/update/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"destination",
+								":id",
+								"update",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4",
+									"uuid": "48c3ea7d-d4d6-4914-895f-a4b2545066e8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Destination",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{AUTH_TOKEN}}",
+								"type": "text",
+								"uuid": "a964cf61-437d-41fd-936d-0b11bba848be"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/destination/:id/delete/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"destination",
+								":id",
+								"delete",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5",
+									"uuid": "f09059a0-f88a-4521-a64f-c64bfc85da27"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Data receiver and pusher",
+			"item": [
+				{
+					"name": "Data receiver and pusher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "CL-X-TOKEN",
+								"value": "f8G7N8Hp3ZE94vorbyVMfDRTwsQrBLGOorHK01OaZUI",
+								"type": "text",
+								"uuid": "4e6e2c6c-031e-454c-9830-a9c126efa02f"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"success\": true,\n  \"message\": \"Request processed successfully\",\n  \"timestamp\": \"2024-05-26T12:00:00Z\",\n  \"data\": {\n    \"result\": {\n      \"key1\": \"value1\",\n      \"key2\": \"value2\"\n    }\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/server/incoming_data/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"server",
+								"incoming_data",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://dc41-115-99-18-173.ngrok-free.app",
+			"type": "string"
+		},
+		{
+			"key": "AUTH_TOKEN",
+			"value": "75ad9b5b9d85accf19a927426b9bc6614bcf68b7",
+			"type": "string"
+		}
+	]
+}
